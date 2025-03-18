@@ -1,0 +1,71 @@
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.layout{
+    display: flex;
+    flex-direction: column;
+    background-color: #222831;
+    margin: 0 auto;
+    width: 300px;
+    height: 450px;
+}
+
+.input{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 40px 15px;
+    border-bottom: 2px solid #f2f2f2;
+}
+
+.input p{
+    color: #f2f2f2;
+    font-size: 36px;
+    text-align: right;
+}
+
+.key{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    width: 300px;
+    height: 400px;
+    color:#f2f2f2 ;
+}
+
+#disabled{
+    border: none;
+    cursor: default;
+}
+
+#disabled:hover{
+    background-color: #222831;
+}
+
+.key > div {
+    font-size: 22px;
+    padding: 19px 19px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+.key > div:hover{
+    background-color: #f96d00;
+}
