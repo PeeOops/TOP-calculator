@@ -15,16 +15,45 @@ function clear() {
 
 function displayInput() {
     inputText.innerText = currentInput;
-}
 
-function calculate(operator){
-    let num1 = parseInt(previousInput);
-    let num2 = parseInt(currentInput);
-
-    if(operator === "+"){
-        console.log(previousInput, operator, currentInput)
+    if(operator){
+        inputText.innerText = operator;
+    }else if(operator && currentInput){
+        inputText.innerText = currentInput;
     }
+
+
 }
+
+function calculate() {
+    let result;
+  
+    const num1 = parseFloat(previousInput);
+    const num2 = parseFloat(currentInput);
+  
+    switch (operator) {
+      case '+':
+        result = num1 + num2;
+        break;
+      case '-':
+        result = num1 - num2;
+        break;
+      case '*':
+        result = num1 * num2;
+        break;
+      case '/':
+        result = num1 / num2;
+        break;
+      default:
+        result = num2;
+        break;
+    }
+  
+    currentInput = result.toString();
+    operator = '';
+    previousInput = '';
+    displayInput();
+  }
 
 keys.addEventListener("click", (event) => {
     if(event.target && event.target.nodeName === "DIV" && event.target.innerText !== ""){
@@ -36,12 +65,18 @@ keys.addEventListener("click", (event) => {
         }else if(clickedValue === "DEL"){
             // let cut = currentInput.slice(0, -1);
         }else if(clickedValue === "/" || clickedValue === "*" || clickedValue === "-" || clickedValue === "+"){
+            if(operator){
+                calculate();
+            }
             previousInput = currentInput;
             operator = clickedValue;
-            currentInput = operator; 
-            calculate(operator);
+            currentInput = ""; 
+
+        }else if(clickedValue === "="){
+            calculate();
+
         }else{
-            if(currentInput === "0" || currentInput === "."){
+            if(currentInput === "0" && currentInput !== "."){
                 currentInput = clickedValue;
             }else{
                 currentInput += clickedValue;
@@ -51,3 +86,4 @@ keys.addEventListener("click", (event) => {
 
     displayInput();
 })
+
